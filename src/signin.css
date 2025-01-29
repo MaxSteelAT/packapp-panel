@@ -1,0 +1,141 @@
+.App {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-height: inherit;
+  padding: 120px;
+  margin-right: 50px;
+  margin-top: 30px;
+}
+
+.formSection {
+  width: 420px;
+  margin-right: 50px;
+
+}
+
+.newAccout {
+  display: flex;
+  justify-content: end;
+  font-size: 12px;
+  margin-bottom: 50px;
+  align-items: center;
+}
+
+.register {
+  margin-right: 20px;
+  color: #4F6974;
+}
+
+.buttonRegister {
+  width: 70px;
+  height: 30px;
+  border-style: none;
+  border-radius: 10px;
+  background-color: #ff6b35;
+  color: aliceblue;
+}
+
+.title {
+  margin-bottom: 30px;
+  font-family: 'sans-serif';
+  font-size: 40px;
+  text-align: center;
+}
+
+.descriptionTitle {
+  margin-bottom: 20px;
+  width: 400px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 20px;
+  text-align: center;
+  font-weight: lighter;
+  color: #4F6974;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  color: #4F6974;
+  margin-left: 10px;
+}
+
+.email {
+  margin-top: 40px;
+}
+
+.input {
+  width: 24vw;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  border-style: none;
+  height: 45px;
+  box-shadow:
+    rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+    padding: 10px;
+    outline: none
+}
+
+.buttonStart {
+  width: 24vw;
+  height: 45px;
+  border-style: none;
+  border-radius: 10px;
+  background-color: #ff6b35;
+  color: aliceblue;
+}
+
+.separator {
+  margin-left: 10px;
+  width: 24vw;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333
+}
+
+.separator::before,
+.separator::after {
+  content: "";
+  flex: 1;
+  border-top: 1px solid #333;
+  margin: 0 10px;
+}
+
+.gmailButton {
+  width: 24vw;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  border-style: none;
+  height: 45px;
+  background-color: #ffffff;
+  box-shadow:
+    rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  margin-left: 10px;
+}
+
+.signUp {
+  display: flex;
+  font-size: 12px;
+  margin-bottom: 50px;
+  margin-top: 10px;
+  text-align: center;
+  justify-content: center;
+  font-weight: bold;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: lighter;
+  color: #4F6974;
+}
+
+a {
+  margin-left: 10px;
+  color: blue;
+}
