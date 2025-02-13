@@ -87,6 +87,17 @@
   color: aliceblue;
 }
 
+.buttonStart:hover{
+  background-color: #ff6b35ba;
+  cursor: pointer;
+}
+
+.buttonStart:disabled{
+  background-color: #f8ece8aa;
+  cursor: no-drop;
+  color: black;
+}
+
 .separator {
   margin-left: 10px;
   width: 24vw;

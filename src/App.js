@@ -1,98 +1,44 @@
-import './signin.css';
-import logo from './assets/images/undraw_access-account_aydp.svg'
-import { useState } from 'react';
+import React, { useEffect, useContext } from 'react';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import { AuthProvider, AuthContext } from './context/authContext';
+import Login from './screens/login';
+import Dashboard from './screens/dashboard';
 
-function App() {
-  const [emailInput, setEmailInput] = useState('')
-  const [showEmailError, setShowEmailError] = useState(false)
+const PrivateRoute = ({ children }) => {
+  const { isAuthenticated } = useContext(AuthContext);
+  console.log("aqui", isAuthenticated)
 
-  const changeEmailInput = (event) => {
-    const text = event.target.value
-    setEmailInput(text)
-  }
+  return isAuthenticated ? children : <Navigate to="/login" />;
+};
 
-  const emailValidation = () => {
-    const regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+const App = () => {
+  const {login} = useContext(AuthContext);
 
-    if (regexEmail.test(emailInput)) {
-      setShowEmailError(false);
-    } else {
-      setShowEmailError(true);
+  useEffect(() => {
+    // Verificar si hay un token guardado en localStorage
+    const token = localStorage.getItem('token');
+    console.log('token', token)
+    if (token) {
+      login(token);
     }
-  }
-
-  const [passwordInput, setPasswordInput] = useState('')
-  const [showPasswordError, setPasswordError] = useState(false)
-
-  const changePasswordInput = (event) => {
-    const text = event.target.value
-    setPasswordInput(text)
-  }
-
-  const passwordValidation = () => {
-    if (passwordInput.length > 8) {
-      setPasswordError(false);
-    } else {
-      setPasswordError(true);
-    }
-  }
-
-  const buttonValidation = () => {
-    emailValidation();
-    passwordValidation();
-  };
-
-  const registerButton = () => {
-    alert("You registered!");
-  };
-
-  const gmailButton = () => {
-    alert("Login not available!");
-  };
+  }, [login]);
 
   return (
-    <div className='App'>
-      <div className='ilustration'>
-        <img src={logo}></img>
-      </div>
-      <div className='formSection'>
-        <div className='newAccout'>
-          <h3 className='register'>Already have an accoutn?</h3>
-          <button className='buttonRegister' onClick={registerButton}>Register</button>
-        </div>
-        <div>
-          <h1 className='title'>Hello! Welcome back.</h1>
-          <p className='descriptionTitle'>Log in with your data that you entered during Your registration</p>
-        </div>
-        <div className='form'>
-          <div>
-            <label className='email' htmlFor="email" style={{ display: 'block', marginBottom: '5px' }}>
-              Email address:
-            </label>
-            <input className='input' placeholder="Example@email.com" type="text" value={emailInput} onChange={changeEmailInput} />
-            {showEmailError && (
-              <p>Email is invalid</p>
-            )}
-          </div>
-          <div>
-            <label style={{ display: 'block', marginBottom: '5px' }}> Password:</label>
-            <input className='input' type="password" value={passwordInput} onChange={changePasswordInput} />
-            {showPasswordError && (
-              <p>Your password is less than 8 characters</p>
-            )}
-          </div>
-          <button className='buttonStart' onClick={buttonValidation}>Start now?</button>
-        </div>
-        <h3 className='separator'>OR</h3>
-        <button className='gmailButton' onClick={gmailButton}>Signin with Google</button>
-        <div className='signUp'>
-          <h3>Don't have an accoutn?</h3>
-          <a>Sing up</a>
-        </div>
-
-      </div>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route
+          path="/dashboard"
+          element={
+            <PrivateRoute>
+              <Dashboard />
+            </PrivateRoute>
+          }
+        />
+        <Route path="*" element={<Navigate to="/login" />} />
+      </Routes>
+    </Router>
   );
-}
+};
 
 export default App;
